@@ -1,3 +1,4 @@
+import { ERRORS } from "../errors";
 import { Accessibility } from "./accessibility";
 import { State } from "./state";
 import { Valuation } from "./valuation";
@@ -19,23 +20,42 @@ export class Model {
     this.states.add(state);
   }
 
-  public addStates(states: Set<State>) {
+  public addStates(...states: State[]) {
     this.states = new Set(states);
   }
 
   public hasState(state: State) {
     return this.states.has(state);
   }
-  public hasStateByIdentifier(identifier: string) {
+  public getStateByIdentifier(identifier: string) {
     for (const currentState of this.states) {
       if (currentState.getIdentifier() === identifier) {
-        return true;
+        return currentState;
       }
     }
-    return false;
+    return null;
   }
 
   public sizeStates() {
     return this.states.size;
+  }
+
+  public getInitialState() {
+    return this.initialState;
+  }
+
+  public setInitialState(state: State) {
+    if (!this.hasState(state)) {
+      this.addState(state);
+    }
+    this.initialState = state;
+  }
+
+  public setInitialStateByIdentifier(identifier: string) {
+    const state = this.getStateByIdentifier(identifier);
+    if (!state) {
+      throw new Error(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);
+    }
+    this.setInitialState(state);
   }
 }

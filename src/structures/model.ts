@@ -11,18 +11,22 @@ export class Model {
 
   private valuation: Valuation;
 
-  constructor(states: Set<State> = new Set<State>()) {
-    this.states = states;
+  constructor() {
+    this.states = new Set<State>();
   }
 
   public addState(state: State) {
     this.states.add(state);
   }
 
-  public hasState(state: State): boolean {
+  public addStates(states: Set<State>) {
+    this.states = new Set(states);
+  }
+
+  public hasState(state: State) {
     return this.states.has(state);
   }
-  public hasStateByIdentifier(identifier: string): boolean {
+  public hasStateByIdentifier(identifier: string) {
     for (const currentState of this.states) {
       if (currentState.getIdentifier() === identifier) {
         return true;
@@ -31,7 +35,7 @@ export class Model {
     return false;
   }
 
-  public sizeStates(): number {
+  public sizeStates() {
     return this.states.size;
   }
 }

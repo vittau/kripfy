@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/vittau/kripfy.svg?branch=master)](https://travis-ci.com/vittau/kripfy)
+
 <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
 
 **Kripfy** is a Kripke structure modelling framework.

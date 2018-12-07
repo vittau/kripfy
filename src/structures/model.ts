@@ -22,12 +22,16 @@ export class Model {
   public hasState(state: State): boolean {
     return this.states.has(state);
   }
-  public hasStateByName(name: string): boolean {
+  public hasStateByIdentifier(identifier: string): boolean {
     for (const currentState of this.states) {
-      if (currentState.name === name) {
+      if (currentState.getIdentifier() === identifier) {
         return true;
       }
     }
     return false;
+  }
+
+  public sizeStates(): number {
+    return this.states.size;
   }
 }

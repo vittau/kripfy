@@ -13,7 +13,8 @@
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",

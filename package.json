@@ -1,0 +1,27 @@
+{
+  "name": "kripfy",
+  "version": "1.0.0",
+  "description": "A Kripke structure modelling framework",
+  "repository": "https://github.com/vittau/kripfy.git",
+  "author": "Vitor Machado",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/kripfy.js",
+  "umd:main": "dist/kripfy.umd.js",
+  "module": "dist/kripfy.mjs",
+  "source": "src/kripfy.ts",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "microbundle": "^0.8.3",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  }
+}

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/vittau/kripfy.svg?branch=master)](https://travis-ci.com/vittau/kripfy)
-[![dependencies](https://david-dm.org/vittau/kripfy.svg)](https://david-dm.org/vittau/kripfy)
-[![devDependencies](https://david-dm.org/vittau/kripfy/dev-status.svg)](https://david-dm.org/vittau/kripfy#info=devDependencies)
+[![dependencies Status](https://david-dm.org/vittau/kripfy/status.svg)](https://david-dm.org/vittau/kripfy)
+[![devDependencies Status](https://david-dm.org/vittau/kripfy/dev-status.svg)](https://david-dm.org/vittau/kripfy?type=dev)
 
 <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
 

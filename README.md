@@ -4,8 +4,40 @@
 
 <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
 
-**Kripfy** is a Kripke structure modelling framework.
+---
 
-**This framework is still under construction**
+**kripfy** is a Kripke structure modelling framework
 
-It is expected to provide the ability to define initial dense Kripke models, and then apply functional operations on them to transform these into useful models to be worked with in model checking.
+---
+
+## Downloading and installing dependencies
+
+```console
+$ git clone https://github.com/vittau/kripfy.git
+$ yarn install
+```
+
+## Testing
+
+```console
+$ yarn test
+```
+
+## Building
+
+```console
+$ yarn build
+```
+
+## Objectives
+
+- Define a generic object schema for Kripke structures;
+- Provide ways to build and transform the structures to prepare them for usage;
+- Be easy and intuitive to use;
+- Be usable in modal logic model checkers.
+
+⚠**This framework is still under construction**⚠
+
+## License
+
+MIT

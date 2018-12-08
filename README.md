@@ -2,11 +2,17 @@
 [![dependencies Status](https://david-dm.org/vittau/kripfy/status.svg)](https://david-dm.org/vittau/kripfy)
 [![devDependencies Status](https://david-dm.org/vittau/kripfy/dev-status.svg)](https://david-dm.org/vittau/kripfy?type=dev)
 
-<img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
+<h1 align="center">
+  <br>
+  <br>
+  <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
+  <br>
+  <br>
+</h1>
 
 ---
 
-**kripfy** is a Kripke structure modelling framework
+<div align="center"><b>kripfy</b> is a Kripke structure modelling framework</div>
 
 ---
 

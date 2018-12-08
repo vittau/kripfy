@@ -2,13 +2,13 @@
 [![dependencies Status](https://david-dm.org/vittau/kripfy/status.svg)](https://david-dm.org/vittau/kripfy)
 [![devDependencies Status](https://david-dm.org/vittau/kripfy/dev-status.svg)](https://david-dm.org/vittau/kripfy?type=dev)
 
-<h1 align="center">
+<div align="center">
   <br>
   <br>
   <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
   <br>
   <br>
-</h1>
+</div>
 
 ---
 

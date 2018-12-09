@@ -16,18 +16,18 @@ export class Model {
     this.states = new Set<State>();
   }
 
-  public addState(state: State) {
+  public addState(state: State): void {
     this.states.add(state);
   }
 
-  public addStates(...states: State[]) {
+  public addStates(...states: State[]): void {
     this.states = new Set(states);
   }
 
-  public hasState(state: State) {
+  public hasState(state: State): boolean {
     return this.states.has(state);
   }
-  public getStateByIdentifier(identifier: string) {
+  public getStateByIdentifier(identifier: string): State {
     for (const currentState of this.states) {
       if (currentState.getIdentifier() === identifier) {
         return currentState;
@@ -36,22 +36,22 @@ export class Model {
     return null;
   }
 
-  public sizeStates() {
+  public sizeStates(): number {
     return this.states.size;
   }
 
-  public getInitialState() {
+  public getInitialState(): State {
     return this.initialState;
   }
 
-  public setInitialState(state: State) {
+  public setInitialState(state: State): void {
     if (!this.hasState(state)) {
       this.addState(state);
     }
     this.initialState = state;
   }
 
-  public setInitialStateByIdentifier(identifier: string) {
+  public setInitialStateByIdentifier(identifier: string): void {
     const state = this.getStateByIdentifier(identifier);
     if (!state) {
       throw new Error(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);

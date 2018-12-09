@@ -5,7 +5,7 @@ export class State {
     this.identifier = identifier;
   }
 
-  public getIdentifier() {
+  public getIdentifier(): string {
     return this.identifier;
   }
 }

@@ -13,7 +13,7 @@ export class Kripfy {
     accessibility = false,
     propositions = 0,
     states = 0
-  }: IKripkeOptions = {}) {
+  }: IKripkeOptions = {}): Model {
     const options: IKripkeOptions = { accessibility, propositions, states };
 
     if (options.states && options.propositions) {
@@ -39,7 +39,7 @@ export class Kripfy {
   }
 }
 
-function generateStates(quantity) {
+function generateStates(quantity): State[] {
   const arrStates: State[] = [];
   for (let i = 1; i <= quantity; i++) {
     arrStates.push(new State(`s${i}`));
@@ -47,7 +47,7 @@ function generateStates(quantity) {
   return arrStates;
 }
 
-function generatePropositions(quantity) {
+function generatePropositions(quantity): { states: State[] } {
   const arrStates: State[] = [];
   // TODO: Implement generation of states given a quantity of propositions, according to the combinations of them.
   return { states: arrStates };

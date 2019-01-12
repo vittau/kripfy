@@ -21,9 +21,7 @@ describe("kripfy", () => {
 
     expect(model.sizeStates()).toBe(NUM_STATES);
     for (let i = 1; i <= NUM_STATES; i++) {
-      expect(model.getStateByIdentifier(`s${NUM_STATES}`)).toBeInstanceOf(
-        State
-      );
+      expect(model.getState(`s${NUM_STATES}`)).toBeInstanceOf(State);
     }
   });
 

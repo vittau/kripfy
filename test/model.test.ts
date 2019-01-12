@@ -11,8 +11,8 @@ describe("model", () => {
     model.addState(state);
 
     expect(model.hasState(state)).toBeTruthy();
-    expect(model.getStateByIdentifier("A")).toBe(state);
-    expect(model.getStateByIdentifier("B")).toBeNull();
+    expect(model.getState("A")).toBe(state);
+    expect(model.getState("B")).toBeNull();
   });
 
   test("add 3 states and set one as initial", () => {
@@ -24,7 +24,7 @@ describe("model", () => {
 
     model.addStates(stateA, stateB, stateC);
 
-    model.setInitialStateByIdentifier("B");
+    model.setInitialState("B");
 
     expect(model.getInitialState()).toBe(stateB);
   });
@@ -51,7 +51,7 @@ describe("model", () => {
 
     model.addStates(stateA, stateB);
 
-    expect(() => model.setInitialStateByIdentifier("C")).toThrowError(
+    expect(() => model.setInitialState("C")).toThrowError(
       ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND
     );
   });

@@ -27,7 +27,7 @@ export class Model {
   public hasState(state: State): boolean {
     return this.states.has(state);
   }
-  public getStateByIdentifier(identifier: string): State {
+  public getState(identifier: string): State {
     for (const currentState of this.states) {
       if (currentState.getIdentifier() === identifier) {
         return currentState;
@@ -44,18 +44,18 @@ export class Model {
     return this.initialState;
   }
 
-  public setInitialState(state: State): void {
-    if (!this.hasState(state)) {
-      this.addState(state);
+  public setInitialState(state: State | string): void {
+    if (state instanceof State) {
+      if (!this.hasState(state)) {
+        this.addState(state);
+      }
+      this.initialState = state;
+    } else if (typeof state === "string") {
+      const actualState = this.getState(state);
+      if (!actualState) {
+        throw new Error(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);
+      }
+      this.setInitialState(actualState);
     }
-    this.initialState = state;
-  }
-
-  public setInitialStateByIdentifier(identifier: string): void {
-    const state = this.getStateByIdentifier(identifier);
-    if (!state) {
-      throw new Error(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);
-    }
-    this.setInitialState(state);
   }
 }

@@ -15,6 +15,7 @@
 [![Build Status](https://travis-ci.com/vittau/kripfy.svg?branch=master)](https://travis-ci.com/vittau/kripfy)
 [![dependencies Status](https://david-dm.org/vittau/kripfy/status.svg)](https://david-dm.org/vittau/kripfy)
 [![devDependencies Status](https://david-dm.org/vittau/kripfy/dev-status.svg)](https://david-dm.org/vittau/kripfy?type=dev)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Downloading and installing dependencies
 

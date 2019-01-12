@@ -1,5 +1,4 @@
 {
-  "tslint.autoFixOnSave": true,
   "javascript.format.enable": false,
   "typescript.format.enable": false,
   "editor.formatOnSave": true,

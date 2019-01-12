@@ -51,8 +51,6 @@ describe("model", () => {
 
     model.addStates(stateA, stateB);
 
-    expect(() => model.setInitialState("C")).toThrowError(
-      ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND
-    );
+    expect(() => model.setInitialState("C")).toThrowError(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);
   });
 });

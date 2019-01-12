@@ -1,19 +1,17 @@
 import { ERRORS } from "./errors";
+import { Powerset } from "./powerset";
 import { Model } from "./structures/model";
+import { Proposition } from "./structures/proposition";
 import { State } from "./structures/state";
 
 interface IKripkeOptions {
   states?: number;
-  propositions?: number;
+  propositions?: string[];
   accessibility?: boolean;
 }
 
 export class Kripfy {
-  public createModel({
-    accessibility = false,
-    propositions = 0,
-    states = 0
-  }: IKripkeOptions = {}): Model {
+  public createModel({ accessibility = false, propositions = null, states = null }: IKripkeOptions = {}): Model {
     const options: IKripkeOptions = { accessibility, propositions, states };
 
     if (options.states && options.propositions) {
@@ -21,15 +19,18 @@ export class Kripfy {
     }
 
     let arrStates: State[] = [];
+    let valuations: Map<State, Proposition[]>;
     if (options.states) {
       arrStates = generateStates(options.states);
     } else if (options.propositions) {
       const statesValuations = generatePropositions(options.propositions);
       arrStates = statesValuations.states;
+      valuations = statesValuations.valuations;
     }
 
     const model = new Model();
     model.addStates(...arrStates);
+    model.setValuations(valuations);
 
     if (options.accessibility) {
       // TODO: Implement function to generate relations to fill up the graph with connections.
@@ -39,7 +40,7 @@ export class Kripfy {
   }
 }
 
-function generateStates(quantity): State[] {
+function generateStates(quantity: number): State[] {
   const arrStates: State[] = [];
   for (let i = 1; i <= quantity; i++) {
     arrStates.push(new State(`s${i}`));
@@ -47,8 +48,24 @@ function generateStates(quantity): State[] {
   return arrStates;
 }
 
-function generatePropositions(quantity): { states: State[] } {
-  const arrStates: State[] = [];
-  // TODO: Implement generation of states given a quantity of propositions, according to the combinations of them.
-  return { states: arrStates };
+function generatePropositions(props: string[]): { states: State[]; valuations: Map<State, Proposition[]> } {
+  const states: State[] = [];
+  const valuations = new Map<State, Proposition[]>();
+
+  const propsPowerset = Powerset.powerSet(props);
+  for (const set of propsPowerset) {
+    let stateName = set.join("");
+    if (!stateName) {
+      stateName = "_";
+    }
+    const state = new State(stateName);
+    states.push(state);
+
+    const propositions: Proposition[] = [];
+    for (const item of set) {
+      propositions.push(new Proposition(item));
+    }
+    valuations.set(state, propositions);
+  }
+  return { states, valuations };
 }

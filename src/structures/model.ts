@@ -1,16 +1,15 @@
 import { ERRORS } from "../errors";
-import { Accessibility } from "./accessibility";
+import { Proposition } from "./proposition";
 import { State } from "./state";
-import { Valuation } from "./valuation";
 
 export class Model {
   private states: Set<State>;
 
   private initialState: State;
 
-  private accessibility: Accessibility;
+  private accessibility: Map<State, State[]>;
 
-  private valuation: Valuation;
+  private valuations: Map<State, Proposition[]>;
 
   constructor() {
     this.states = new Set<State>();
@@ -57,5 +56,13 @@ export class Model {
       }
       this.setInitialState(actualState);
     }
+  }
+
+  public setValuations(valuations: Map<State, Proposition[]>): void {
+    this.valuations = valuations;
+  }
+
+  public getValuations(state: State): Proposition[] {
+    return this.valuations.get(state);
   }
 }

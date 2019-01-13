@@ -29,7 +29,7 @@ export class Kripfy {
     }
 
     const model = new Model();
-    model.addStates(...arrStates);
+    model.setStates(...arrStates);
     model.setValuations(valuations);
 
     if (options.accessibility) {

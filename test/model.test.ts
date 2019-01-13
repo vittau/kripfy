@@ -1,5 +1,6 @@
 import { ERRORS } from "../src/errors";
 import { Model } from "../src/structures/model";
+import { Proposition } from "../src/structures/proposition";
 import { State } from "../src/structures/state";
 
 describe("model", () => {
@@ -22,7 +23,7 @@ describe("model", () => {
     const stateB = new State("B");
     const stateC = new State("C");
 
-    model.addStates(stateA, stateB, stateC);
+    model.setStates(stateA, stateB, stateC);
 
     model.setInitialState("B");
 
@@ -36,7 +37,7 @@ describe("model", () => {
     const stateB = new State("B");
     const stateC = new State("C");
 
-    model.addStates(stateA, stateB);
+    model.setStates(stateA, stateB);
 
     model.setInitialState(stateC);
 
@@ -49,8 +50,117 @@ describe("model", () => {
     const stateA = new State("A");
     const stateB = new State("B");
 
-    model.addStates(stateA, stateB);
+    model.setStates(stateA, stateB);
 
     expect(() => model.setInitialState("C")).toThrowError(ERRORS.PARAMS.STATE_WITH_IDENTIFIER_NOT_FOUND);
+  });
+
+  test("add 2 states and filter the model removing one state", () => {
+    const model = new Model();
+
+    const stateA = new State("A");
+    const stateB = new State("B");
+
+    model.setStates(stateA);
+
+    model.setInitialState(stateB);
+
+    const fn = (state: State): boolean => {
+      return state.getIdentifier() === "A";
+    };
+
+    const newModel = model.filter(fn);
+
+    expect(newModel.getState("A")).toBeNull();
+    expect(newModel.getState("B")).toBe(stateB);
+  });
+
+  test("add 2 states and another one as initial and filter the model removing the initial state", () => {
+    const model = new Model();
+
+    const stateA = new State("A");
+    const stateB = new State("B");
+    const stateC = new State("C");
+
+    model.setStates(stateA, stateB);
+
+    model.setInitialState(stateC);
+
+    const fn = (state: State): boolean => {
+      return state.getIdentifier() === "C";
+    };
+
+    const newModel = model.filter(fn);
+
+    expect(newModel.getState("A")).toBe(stateA);
+    expect(newModel.getState("B")).toBe(stateB);
+    expect(newModel.getState("C")).toBeNull();
+    expect(newModel.getInitialState()).toBeUndefined();
+  });
+
+  test("filtering a model should leave the original model unaltered", () => {
+    const model = new Model();
+
+    const stateA = new State("A");
+    const stateB = new State("B");
+
+    model.setStates(stateA);
+
+    model.setInitialState(stateB);
+
+    const fn = (state: State): boolean => {
+      return state.getIdentifier() === "A";
+    };
+
+    model.filter(fn);
+
+    expect(model.getState("A")).toBe(stateA);
+    expect(model.getState("B")).toBe(stateB);
+  });
+
+  test("add 2 states and map them to states with different identifiers", () => {
+    const model = new Model();
+
+    const stateA = new State("A");
+    const stateB = new State("B");
+
+    model.setStates(stateA);
+
+    model.setInitialState(stateB);
+
+    const fn = (state: State, propositions: Proposition[]): { state: State; propositions: Proposition[] } => {
+      return {
+        propositions,
+        state: new State(`new${state.getIdentifier()}`)
+      };
+    };
+
+    const newModel = model.map(fn);
+
+    expect(newModel.getState("newA")).toBeInstanceOf(State);
+    expect(newModel.getState("newB")).toBeInstanceOf(State);
+  });
+
+  test("mapping a model should leave the original model unaltered", () => {
+    const model = new Model();
+
+    const stateA = new State("A");
+    const stateB = new State("B");
+
+    model.setStates(stateA);
+
+    model.setInitialState(stateB);
+
+    const fn = (state: State, propositions: Proposition[]): { state: State; propositions: Proposition[] } => {
+      return {
+        propositions,
+        state: new State(`new${state.getIdentifier()}`)
+      };
+    };
+
+    model.map(fn);
+
+    expect(model.getState("A")).toBe(stateA);
+    expect(model.getState("B")).toBe(stateB);
   });
 });

@@ -98,7 +98,7 @@ describe("model", () => {
     expect(newModel.getInitialState()).toBeUndefined();
   });
 
-  test("filtering a model should leave the original model unaltered", () => {
+  test("filtering should leave the original model unchanged", () => {
     const model = new Model();
 
     const stateA = new State("A");
@@ -141,7 +141,7 @@ describe("model", () => {
     expect(newModel.getState("newB")).toBeInstanceOf(State);
   });
 
-  test("mapping a model should leave the original model unaltered", () => {
+  test("mapping should leave the original model unchanged", () => {
     const model = new Model();
 
     const stateA = new State("A");

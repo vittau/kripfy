@@ -66,7 +66,7 @@ describe("model", () => {
     model.setInitialState(stateB);
 
     const fn = (state: State): boolean => {
-      return state.getIdentifier() === "A";
+      return state.getIdentifier() === "B";
     };
 
     const newModel = model.filter(fn);
@@ -87,7 +87,7 @@ describe("model", () => {
     model.setInitialState(stateC);
 
     const fn = (state: State): boolean => {
-      return state.getIdentifier() === "C";
+      return state.getIdentifier() !== "C";
     };
 
     const newModel = model.filter(fn);

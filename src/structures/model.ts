@@ -7,8 +7,9 @@ export class Model {
 
   private initialState: State;
 
-  // TODO: Implement accessibility methods.
-  private accessibility: Map<State, State[]>;
+  // TODO: Allow multiple transition relations.
+  // TODO: Implement transition methods.
+  private transitions: Map<State, State[]>;
 
   private valuations: Map<State, Proposition[]>;
 
@@ -77,11 +78,11 @@ export class Model {
     const newModel = new Model();
     for (const state of this.states) {
       const valuations = this.valuations.get(state);
-      if (!fn(state, valuations)) {
+      if (fn(state, valuations)) {
         newModel.addState(state);
         newModel.addValuations(state, valuations);
       }
-      if (!fn(this.initialState, this.valuations.get(this.initialState))) {
+      if (fn(this.initialState, this.valuations.get(this.initialState))) {
         newModel.setInitialState(this.initialState);
       }
     }

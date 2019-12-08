@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <br>
-  <img src="https://www.vitorpmach.com/kripfy/logo.png" width="200">
+  <img src="https://www.vitormach.dev/kripfy/logo.png" width="200">
   <br>
   <br>
 </div>
